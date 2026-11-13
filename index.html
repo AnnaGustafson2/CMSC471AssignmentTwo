@@ -8,16 +8,111 @@
 </head>
 <body>
     <div id="tooltip" style="display:none"></div>
-    <div class="container"> <!-- Centers content and sets max width -->
-        <h1>CMSC471 Assignment Two</h1>
-        
-        <h2>White Hat Visualization</h2>
-        <div id="vis"></div> <!--  Will hold our visualization (SVG) -->
-        <h2>Black Hat Visualization</h2>
-        <div id="vis2"></div> <!--  Will hold our visualization two (SVG) -->
-    </div>
-    
-    <!-- Load D3.js -->
+
+    <main>
+        <header class="page-header">
+            <div class="eyebrow">Data Ethics · Visualized</div>
+            <h1>The Gender Gap: Two Perspectives on Life Expectancy</h1>
+            <p>How visualization choices can change the story told by the same data.</p>
+        </header>
+
+        <section class="comparison">
+            <!-- WHITE HAT -->
+            <article class="chart-card white-card">
+                <div class="card-header">
+                    <div>
+                        <span class="badge badge-white"><i></i>White hat</span>
+                        <h2>Life expectancy at birth by region and sex</h2>
+                        <p>Bars start at zero. Labels above each pair show the gap (women minus men) in years.</p>
+                    </div>
+                    <div class="year-chip" id="white-year">2019</div>
+                </div>
+
+                <div class="card-controls">
+                    <label>Sort by
+                        <select id="sortSelect">
+                            <option value="region">Region order</option>
+                            <option value="gap">Largest gap</option>
+                            <option value="lifeExpectancy">Life expectancy</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="chart-stage">
+                    <div id="vis"></div>
+                    <div class="legend">
+                        <span><i class="legend-female"></i>Women</span>
+                        <span><i class="legend-male"></i>Men</span>
+                    </div>
+                </div>
+
+                <div class="chart-note">
+                    <div class="note-icon">i</div>
+                    <p><strong>Full scale.</strong> Bar lengths are proportional to life expectancy.
+                        Source: World Bank Gender Statistics (regional aggregates). Gaps reflect behavior,
+                        occupational risk, conflict, and healthcare access, not only biology.</p>
+                </div>
+            </article>
+
+            <!-- BLACK HAT -->
+            <article class="chart-card black-card">
+                <div class="card-header">
+                    <div>
+                        <span class="badge badge-black"><i></i>Black hat</span>
+                        <h2>Men's life-expectancy deficit is widening</h2>
+                        <p>Life expectancy at birth by region. It's time to close the gap: men's health needs greater investment.</p>
+                    </div>
+                    <div class="year-chip dark" id="black-year">2019</div>
+                </div>
+
+                <div class="callout">
+                    <div class="callout-value" id="black-stat-value">-</div>
+                    <div class="callout-text">
+                        <div class="callout-label">Gap vs 1960</div>
+                        <div class="callout-region" id="black-stat-region"></div>
+                    </div>
+                </div>
+
+                <div class="chart-stage">
+                    <div id="vis2"></div>
+                    <div class="legend">
+                        <span><i class="legend-female black"></i>Women</span>
+                        <span><i class="legend-male black"></i>Men</span>
+                    </div>
+                </div>
+
+                <div class="chart-note chart-note-dark">
+                    <div class="note-icon">i</div>
+                    <p>Source: World Bank Gender Statistics.</p>
+                </div>
+            </article>
+        </section>
+
+        <section class="timeline">
+            <div class="timeline-top">
+                <div>
+                    <div class="timeline-label">Explore over time</div>
+                    <h3>Both perspectives, one dataset</h3>
+                </div>
+                <div class="year-display"><span>Selected year</span><strong id="year-display">2019</strong></div>
+            </div>
+            <div class="slider-row">
+                <button class="play-button" id="playButton" aria-label="Play or pause">
+                    <span class="play-icon" id="playIcon"></span>
+                </button>
+                <div class="slider-wrap">
+                    <input type="range" id="yearSlider" aria-label="Year">
+                    <div class="year-marks" id="yearMarks"></div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Data: World Bank Gender Statistics, 1960-2019</p>
+            <p>Same values. Different framing. Always check the axis.</p>
+        </footer>
+    </main>
+
     <script src="https://d3js.org/d3.v7.js"></script>
     <script src="js/script.js"></script>
 </body>
